@@ -13,8 +13,8 @@ def encrypt(word,shift):
     assic=list()
     #storing ascii value of every character from input
     for i in word.upper():
-        if ord(i)<90 and ord(i)>64:
-            if ord(i)+int(shift)<90:
+        if ord(i)<91 and ord(i)>64:
+            if ord(i)+int(shift)<91:
                 assic.append(ord(i)+int(shift))
             else:
                 num=ord(i)-90
@@ -34,7 +34,7 @@ def decrypt(word,shift):
     assic=list()
     #storing ascii value of every character from input
     for i in word.upper():
-        if ord(i)<90 and ord(i)>64:
+        if ord(i)<91 and ord(i)>64:
             if ord(i)-int(shift)>=65:
                 assic.append(ord(i)-int(shift))
             else:
@@ -115,7 +115,7 @@ def message_file(value):
     for i in value:
         a=chr(i)
         char=char+a
-    if ccounter==0:
+    if counter==0:
         with open('result.txt','w') as w_file:
             w_file.write(f"{char}\n")
             counter=counter+1
@@ -158,18 +158,26 @@ def message_or_file():
             continue
     return (mode,file_name,message)
 #main program
-welcome()
-counter=0
-while True:
-    mode,file_name,message=message_or_file()
-    if file_name!=None:
-        process_file(file_name,mode)
-    else:
-        enter_message(mode,message)
-    print(f"({mode},{file_name},{message})")
-    back=input("Would you like to encrypt or decrypt another message(y/n)?")
-    if back.lower()=='y':
-        continue
-    else:
-        print("Thanks for using the program, Goodbye!")
-        break
+def main():
+    welcome()
+    counter=0
+    while True:
+        mode,file_name,message=message_or_file()
+        if file_name!=None:
+            process_file(file_name,mode)
+        else:
+            enter_message(mode,message)
+        print(f"({mode},{file_name},{message})")
+        back=input("Would you like to encrypt or decrypt another message(y/n)?")
+        if back.lower()=='y':
+            continue
+        else:
+            print("Thanks for using the program, Goodbye!")
+            break
+main()
+
+
+
+
+
+
